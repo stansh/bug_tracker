@@ -10,7 +10,7 @@ const authenticate = require('../authenticate');
 
 router.post('/signup', (req, res) => {
   User.register(
-      new User({username: req.body.username}),
+      new User({username: req.body.username, firstname: req.body.firstname,}),
       req.body.password,
       err => {
           if (err) {
