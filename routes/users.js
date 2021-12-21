@@ -7,6 +7,18 @@ const authenticate = require('../authenticate');
 
 
 
+router.get('/', (req, res) => {
+  User.find()
+  .then(data => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.json(data); 
+      
+  })
+  .catch(err => next(err));
+})
+
+
 
 router.post('/signup', (req, res) => {
   User.register(

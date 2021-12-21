@@ -11,6 +11,7 @@ const config = require('./config');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var projectsRouter = require('./routes/projects');
+var ticketsRouter = require('./routes/tickets');
 
 const url = config.mongoUrl;
 const connect = mongoose.connect(url, {
@@ -42,6 +43,7 @@ app.use(passport.initialize());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/projects', projectsRouter);
+app.use('/tickets', ticketsRouter);
 
 
 
