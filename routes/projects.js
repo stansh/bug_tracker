@@ -6,6 +6,7 @@ const Project = require('../models/project');
 
 
 router.get('/', (req, res, next) => {
+     
     Project.find()
     //db.getCollection('projects').find({})
     //console.log(db)

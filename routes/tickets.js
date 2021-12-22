@@ -39,4 +39,23 @@ router.get('/', (req, res, next) => {
     .catch(err => next(err));
 })
 
+ //post commnet
+.post( '/:ticketId', (req, res, next) => {
+   
+  Ticket.findById(req.params.ticketId)
+  
+  .then(tic => {
+    tic.comments.push(req.body); 
+    tic.save()
+    .then(tic => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(tic);
+    })
+    .catch(err => next(err));
+  })
+  .catch(err => next(err));
+})
+
+
   module.exports = router;
