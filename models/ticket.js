@@ -4,19 +4,19 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new Schema({ 
     
-    text: {
+    commentText: {
         type: String,
         required: true
     },
     commentator: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User' 
-    },
+    }
 
-    ticket: {
+   /*  ticket: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Ticket' 
-    },
+    }, */
 
 }, {
     timestamps: true
