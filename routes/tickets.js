@@ -15,6 +15,7 @@ router.get('/', (req, res, next) => {
         
         res.setHeader('Content-Type', 'application/json');
         res.json(data); 
+        
           
       })
       .catch(err => next(err));
@@ -23,6 +24,7 @@ router.get('/', (req, res, next) => {
 
   .post( '/', (req, res, next) => {
     Ticket.create(req.body)
+    //.populate('assignee project')
     .then(tic => {
         if(tic.description.length === 0){
           err = new Error(`Issue description required`);
@@ -33,14 +35,18 @@ router.get('/', (req, res, next) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
         res.json(tic);
+        console.log(tic)
+        
+       
     })
     .catch(err => next(err));
 })
 
- //post commnet
+ //update ticket
 .post( '/:ticketId', (req, res, next) => {
   console.log(req.body.commentText)
   Ticket.findByIdAndUpdate(req.params.ticketId)
+  .populate('assignee project')
   .then(tic => {
     if(req.body.commentText.length === 0) {
       tic.assignee = req.body.assignee
@@ -55,6 +61,9 @@ router.get('/', (req, res, next) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
         res.json(tic);
+        //console.log(tic)
+        
+        
     })
     .catch(err => next(err));
 
@@ -66,13 +75,17 @@ router.get('/', (req, res, next) => {
 
  router.delete('/:ticketId', (req, res, next) => {
   Ticket.findByIdAndDelete(req.params.ticketId)
-  .then(data => {
+  .then(deleted => {
       res.statusCode = 200;
       res.setHeader('Content-Type', 'application/json');
-      res.json(data); 
+      res.json(deleted); 
         
     })
     .catch(err => next(err));
+
+   
+  
+  
 })
 
   module.exports = router;
