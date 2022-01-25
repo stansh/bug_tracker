@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "build" : "cd bt_frontEnd && npm run build",
+    "install-bt_frontEnd": "cd bt_frontEnd && npm install",
     "start": "node ./bin/www",
     "startDev": "nodemon ./bin/www",
     "bt_frontEnd": "npm start --prefix bt_frontEnd",
