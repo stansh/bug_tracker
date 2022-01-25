@@ -1,19 +1,17 @@
 var express = require('express');
 var router = express.Router();
 const User = require('../models/user');
-const passport = require('passport'); 
-
+const passport = require('passport');
 const authenticate = require('../authenticate');
 
 
 
-router.get('/', (req, res) => {
+router.get('/', authenticate.verifyUser, (req, res) => {
   User.find()
   .then(data => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
-    res.json(data); 
-      
+    res.json(data);       
   })
   .catch(err => next(err));
 })
@@ -22,7 +20,7 @@ router.get('/', (req, res) => {
 
 router.post('/signup', (req, res) => {
   User.register(
-      new User({username: req.body.username, firstname: req.body.firstname,}),
+      new User({username: req.body.username, firstname: req.body.firstname, lastname: req.body.lastname,}),
       req.body.password,
       err => {
           if (err) {
@@ -49,24 +47,6 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 
 
 
-router.get('/logout', (req, res, next) => {
-  if (req.session) {
-      req.session.destroy();
-      res.clearCookie('session-id');
-      res.redirect('/');
-  } else {
-      const err = new Error('You are not logged in!');
-      err.status = 401;
-      return next(err);
-  }
-});
-
 module.exports = router; 
 
-
-/* GET users listing. */
-/* router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-*/
 

@@ -2,14 +2,12 @@
 var express = require('express');
 var router = express.Router();
 const Project = require('../models/project'); 
+const authenticate = require('../authenticate');
 
 
-
-router.get('/', (req, res, next) => {
+router.get('/',authenticate.verifyUser,  (req, res, next) => {
      
     Project.find()
-    //db.getCollection('projects').find({})
-    //console.log(db)
     .then(data => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
@@ -20,16 +18,6 @@ router.get('/', (req, res, next) => {
   })
 
 
- /*  router.get('/', (req, res, next)) => {
-    
-    .then(data => {
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'application/json');
-        res.json(data); 
-          
-      })
-      .catch(err => next(err));
- 
-    }) */
 
-  module.exports = router;
+
+module.exports = router;

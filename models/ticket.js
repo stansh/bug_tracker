@@ -41,6 +41,16 @@ const ticketSchema = new Schema({
         required: true
     },
 
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User' 
+    },
+
+    priority: {
+        type: String,
+        required: true
+    },
+
     comments: [commentSchema]
 
 }, {

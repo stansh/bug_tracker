@@ -14,15 +14,13 @@ var projectsRouter = require('./routes/projects');
 var ticketsRouter = require('./routes/tickets');
 
 const url = config.mongoUrl;
-const connect = mongoose.connect(url, {
-    /* useCreateIndex: true,
-    useFindAndModify: false, */
+const connect = mongoose.connect(process.env.MONGODB_URL || url, {
     useNewUrlParser: true, 
     useUnifiedTopology: true
 });
 
-connect.then(() => console.log('Connected correctly to server'), // connect method is a promise object
-    err => console.log(err) // the way to handle an error as a second argument
+connect.then(() => console.log('Connected correctly to server'), 
+    err => console.log(err) 
 );
 
 var app = express();
@@ -46,7 +44,13 @@ app.use('/projects', projectsRouter);
 app.use('/tickets', ticketsRouter);
 
 
-
+/* if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client','build', 'index.html'));
+  });
+}
+ */
 
 
 // catch 404 and forward to error handler
