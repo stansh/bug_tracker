@@ -44,13 +44,13 @@ app.use('/projects', projectsRouter);
 app.use('/tickets', ticketsRouter);
 
 
-/* if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('bt_frontEnd','build'));
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client','build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'bt_frontEnd','build', 'index.html'));
   });
 }
- */
+
 
 
 // catch 404 and forward to error handler
