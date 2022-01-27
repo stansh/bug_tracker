@@ -159,7 +159,7 @@ function ModifyTicket (props) {
               type="select"
               onClick= {changeAssignee}
             >
-              {otherUsers.map((user,index) =>(<option key = {index} value = {user._id} >{user.firstname} {user.lastname}</option>))}
+              {props.users.map((user,index) =>(<option key = {index} value = {user._id} >{user.firstname} {user.lastname}</option>))}
             </Input>
           </Col>
           </FormGroup>
