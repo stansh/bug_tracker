@@ -31,7 +31,7 @@ function Tickets (props) {
  
     const inputText = useRef();
     const [searchRes,setSearchRes] = useState(null)
-    console.log(inputText)
+
     
     
     const commentsDisplay = e => {
@@ -47,7 +47,6 @@ function Tickets (props) {
     }
     
     const handleValue = () => {
-        console.log(inputText.current.value)
         if (inputText.current.value === '') {
             setSearchRes(null) 
         } 

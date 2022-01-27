@@ -33,7 +33,7 @@ function TicketView (props) {
   const user = useUser()
 
   const [deleted, setDeleted] = useState(null)
-  console.log(deleted)
+ 
   const {id} = useParams();
   const navigate = useNavigate()
   const ticket = props.tickets.find(tic => tic._id === id)

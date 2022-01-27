@@ -19,10 +19,10 @@ export const ticketsReducer = (state = {
             newTicket.assignee = action.payload.assignee;
             newTicket.project = action.payload.project;
             newTicket.createdBy = action.payload.userObj;
-            return {...state, isLoading: true, errMess: null, tickets: state.tickets.concat(newTicket)};
+            return {...state, isLoading: false, errMess: null, tickets: state.tickets.concat(newTicket)};
         case actions.REMOVE_TICKET:
             const updatedTickets = state.tickets.filter(tic => tic._id !== action.payload._id)
-            return {...state, isLoading: true, errMess: null, tickets: updatedTickets};
+            return {...state, isLoading: false, errMess: null, tickets: updatedTickets};
         case actions.UPDATE_TICKET:
              return {...state,
                 tickets: state.tickets.map(tic=> {
