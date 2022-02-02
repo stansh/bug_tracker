@@ -23,7 +23,6 @@ function ModifyTicket (props) {
 
   const index = props.tickets.indexOf(props.ticket)
   let currentAssignee = props.tickets[index].assignee
-  const otherUsers = props.users.filter(user=> user._id !== currentAssignee._id)
   let currentPriority = props.tickets[index].priority
   const user = useUser()
 

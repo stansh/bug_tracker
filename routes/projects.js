@@ -5,8 +5,7 @@ const Project = require('../models/project');
 const authenticate = require('../authenticate');
 
 
-router.get('/',authenticate.verifyUser,  (req, res, next) => {
-     
+router.get('/', authenticate.verifyUser,  (req, res, next) => {  
     Project.find()
     .then(data => {
         res.statusCode = 200;

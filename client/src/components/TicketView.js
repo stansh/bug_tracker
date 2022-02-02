@@ -39,7 +39,7 @@ function TicketView (props) {
   const ticket = props.tickets.find(tic => tic._id === id)
   let currentAssignee;
   let currentPriority;
-  let otherUsers;
+ // let otherUsers;
 
 
   
@@ -47,7 +47,7 @@ function TicketView (props) {
 
   if (ticket !== undefined) {
     currentAssignee = ticket.assignee
-    otherUsers = props.users.filter(user=> user._id !== currentAssignee._id)
+   // otherUsers = props.users.filter(user=> user._id !== currentAssignee._id)
     currentPriority = ticket.priority
   }
 
@@ -227,7 +227,7 @@ function TicketView (props) {
                   </Col>
                 </FormGroup>
                 <Button  color = 'primary' type = 'submit'>Update Ticket</Button>
-                <Button  color = 'success' onClick ={removeTicket}> Ticket Resolved</Button>
+                <Button className = 'mx-2' color = 'success' onClick ={removeTicket}> Ticket Resolved</Button>
           </Form>
         </div>
       </div>
