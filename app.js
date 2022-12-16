@@ -8,7 +8,7 @@ const passport = require('passport');
 const config = require('./config');
 
 
-var indexRouter = require('./routes/index');
+// var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var projectsRouter = require('./routes/projects');
 var ticketsRouter = require('./routes/tickets');
@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 
 
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/projects', projectsRouter);
 app.use('/tickets', ticketsRouter);
@@ -46,7 +46,7 @@ app.use('/tickets', ticketsRouter);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('/build'));
-  app.get('*', (req, res) => {
+  app.get('/index', (req, res) => {
     res.sendFile(path.resolve(__dirname,'build','index.html'));
   })
 }
