@@ -33,7 +33,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/build')));
 
 app.use(passport.initialize());
 
@@ -46,7 +46,7 @@ app.use('/tickets', ticketsRouter);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('/build'));
-  app.get('/index', (req, res) => {
+  app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname,'build','index.html'));
   })
 }
