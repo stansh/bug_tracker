@@ -5,7 +5,8 @@ var path = require('path');
 var logger = require('morgan');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const config = require('./config');
+//const config = require('./config');
+const url = process.env.URL 
 
 
 // var indexRouter = require('./routes/index');
@@ -13,7 +14,7 @@ var usersRouter = require('./routes/users');
 var projectsRouter = require('./routes/projects');
 var ticketsRouter = require('./routes/tickets');
 
-const url = config.mongoUrl;
+//const url = config.mongoUrl;
 const connect = mongoose.connect(process.env.MONGODB_URL || url, {
     useNewUrlParser: true, 
     useUnifiedTopology: true

@@ -7,19 +7,20 @@ const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt; 
 const jwt = require('jsonwebtoken'); 
 
-const config = require('./config.js');
+//const config = require('./config.js');
+const secretKey = process.env.SECRET_KEY;
 
 exports.local = passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser()); 
 passport.deserializeUser(User.deserializeUser());
 
 exports.getToken = function(user) {
-    return jwt.sign(user, config.secretKey, {expiresIn: 3600}); 
+    return jwt.sign(user, secretKey, {expiresIn: 3600}); 
 };
 
 const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken(); 
-opts.secretOrKey = config.secretKey;
+opts.secretOrKey = secretKey;
 
 exports.jwtPassport = passport.use(
     new JwtStrategy(
